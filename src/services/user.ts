@@ -67,6 +67,18 @@ class UserService {
     );
     return token;
   }
+
+  public static async decodeToken(token: string) {
+    return JWT.verify(token, JWT_SECRET);
+  }
+
+  public static async getUserById(id: string) {
+    return db.user.findUnique({
+      where: {
+        id,
+      },
+    });
+  }
 }
 
 export default UserService;
